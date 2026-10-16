@@ -8,12 +8,14 @@ public class StateMachine
 
     public IdleState Idle { get; }
     public MoveState Move { get; }
+    public DashState Dash { get; }
     public JumpState Jump { get; }
 
     public StateMachine(Player player)
     {
         Idle = new IdleState(player);
         Move = new MoveState(player);
+        Dash = new DashState(player);
         Jump = new JumpState(player);
     }
 

@@ -10,7 +10,10 @@ public class IdleState : IState
         _player = player;
     }
 
-    public void OnStateEnter() { }
+    public void OnStateEnter()
+    {
+        _player.Sr.color = Color.white;
+    }
 
     public void OnStateExit() { }
 

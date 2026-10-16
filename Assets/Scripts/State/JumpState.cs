@@ -15,6 +15,7 @@ public class JumpState : IState
         Vector2 velocity = _player.Rb.linearVelocity;
         velocity.y = _player.JumpPower;
         _player.Rb.linearVelocity = velocity;
+        _player.Sr.color = Color.softGreen;
     }
 
     public void OnStateExit() { }
@@ -28,7 +29,7 @@ public class JumpState : IState
             {
                 _player.StateMachine.ChangeState(_player.StateMachine.Move);
             }
-            else
+            if (_player.MoveInput == 0f)
             {
                 _player.StateMachine.ChangeState(_player.StateMachine.Idle);
             }
@@ -39,6 +40,7 @@ public class JumpState : IState
     {
         Vector2 velocity = _player.Rb.linearVelocity;
         velocity.x = _player.MoveInput * _player.MoveSpeed;
+        if (_player.IsDash) velocity.x = _player.MoveInput * _player.MoveSpeed * 2;
         _player.Rb.linearVelocity = velocity;
     }
 }

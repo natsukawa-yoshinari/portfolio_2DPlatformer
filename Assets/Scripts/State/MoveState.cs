@@ -10,7 +10,10 @@ public class MoveState : IState
         _player = player;
     }
 
-    public void OnStateEnter() { }
+    public void OnStateEnter()
+    {
+        _player.Sr.color = Color.softYellow;
+    }
 
     public void OnStateExit() { }
 
@@ -20,6 +23,11 @@ public class MoveState : IState
         {
             _player.StateMachine.ChangeState(_player.StateMachine.Jump);
             return;
+        }
+
+        if (_player.MoveInput != 0f && _player.IsDash)
+        {
+            _player.StateMachine.ChangeState(_player.StateMachine.Dash);
         }
 
         if (_player.MoveInput == 0f)
